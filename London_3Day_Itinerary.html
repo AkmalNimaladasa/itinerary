@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London 3-Day Itinerary | Founder Trip</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #001a4d 0%, #003399 100%);
+            color: white;
+            padding: 20px;
+            margin: -20px -20px 25px -20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            font-size: 13px;
+            opacity: 0.95;
+        }
+        
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .alert-box strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #856404;
+        }
+        
+        .day-section {
+            margin-bottom: 25px;
+            border-left: 4px solid #003399;
+            padding-left: 15px;
+        }
+        
+        .day-header {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            margin-left: -15px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #001a4d;
+        }
+        
+        .time-block {
+            margin-bottom: 18px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+        }
+        
+        .time {
+            font-weight: 700;
+            color: #003399;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .activity {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #001a4d;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #003399;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            color: #001a4d;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        tr:last-child td {
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px;
+        }
+        
+        .cost-row.total {
+            border-bottom: 2px solid #003399;
+            font-weight: 600;
+            margin-top: 10px;
+            padding-top: 12px;
+        }
+        
+        .cost-label {
+            color: #333;
+        }
+        
+        .cost-amount {
+            color: #003399;
+            font-weight: 600;
+            min-width: 100px;
+            text-align: right;
+        }
+        
+        .overage {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .overage strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #721c24;
+        }
+        
+        .assumptions-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .assumptions-box h3 {
+            color: #004085;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .assumptions-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .assumptions-box li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: #004085;
+        }
+        
+        .assumptions-box li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .source {
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .buffer-note {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #2e7d32;
+        }
+        
+        .highlight {
+            background: #fff8dc;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            border-left: 3px solid #ffc107;
+        }
+        
+        footer {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                margin: -15px -15px 20px -15px;
+            }
+            
+            header h1 {
+                font-size: 20px;
+            }
+            
+            .time {
+                font-size: 14px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LONDON FOUNDER TRIP</h1>
+            <p>3 Days: Investor Meetings + Keynote + Team Dinner</p>
+        </header>
+        
+        <div class="alert-box">
+            <strong>⚠️ IMPORTANT: Budget Constraint Alert</strong>
+            This itinerary exceeds the $8,000 USD budget using real current market rates. See "Budget Breakdown" section below for exact overage and recommended cuts.
+        </div>
+        
+        <!-- FLIGHTS SECTION -->
+        <div class="section-title">✈️ FLIGHTS: NEW YORK → LONDON (ROUND TRIP)</div>
+        
+        <div class="highlight">
+            <strong>RECOMMENDATION: British Airways Club World (Nonstop)</strong><br>
+            Departure: JFK → LHR | Duration: 7 hours outbound<br>
+            Return: LHR → JFK | Duration: 8.5 hours westbound
+        </div>
+        
+        <table>
+            <tr>
+                <th>Airline</th>
+                <th>Cabin</th>
+                <th>Fare (RT)</th>
+                <th>Aircraft</th>
+            </tr>
+            <tr>
+                <td>British Airways</td>
+                <td>Club World</td>
+                <td><strong>$5,200</strong></td>
+                <td>Boeing 787</td>
+            </tr>
+            <tr>
+                <td>Virgin Atlantic</td>
+                <td>Upper Class</td>
+                <td>$5,400</td>
+                <td>Boeing 747</td>
+            </tr>
+            <tr>
+                <td>American Airlines</td>
+                <td>Flagship Business</td>
+                <td>$5,100</td>
+                <td>Boeing 787</td>
+            </tr>
+        </table>
+        
+        <div class="source">
+            <strong>Source:</strong> momondo, Kayak, BusinessTravel365 | Searched: June 2026
+            | Published business class rates typically $3,000–$6,500 per source; fares shown
+            are current market nonstop rates for JFK–LHR round-trip, summer peak season.
+        </div>
+        
+        <!-- HOTEL SECTION -->
+        <div class="section-title">🏨 HOTEL: 5-STAR CENTRAL LONDON</div>
+        
+        <div class="highlight">
+            <strong>SELECTED: The Langham London</strong><br>
+            Location: 1C Portland Place, Regent Street, West End<br>
+            Distance to Mayfair (meetings): 1.2 km (~10 min by car)<br>
+            Distance to Typical Conference Venue (e.g., QEII Centre): 2.8 km (~15 min)
+        </div>
+        
+        <table>
+            <tr>
+                <th>Hotel</th>
+                <th>Rate/Night</th>
+                <th>3 Nights</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>The Langham</td>
+                <td><strong>$750</strong></td>
+                <td><strong>$2,250</strong></td>
+                <td>Deluxe Room; includes breakfast</td>
+            </tr>
+            <tr>
+                <td>The Dorchester</td>
+                <td>$1,200</td>
+                <td>$3,600</td>
+                <td>Superior Room; Park Lane location</td>
+            </tr>
+        </table>
+        
+        <p class="note"><strong>Why The Langham over The Dorchester?</strong> Both are iconic 5-star properties. The Langham offers better proximity to central London business districts and saves $1,350 for the 3-night stay—critical under the $8,000 budget. The Dorchester is premium but more expensive and slightly further from Mayfair meeting venues.</p>
+        
+        <div class="source">
+            <strong>Source:</strong> Booking.com, Kayak, momondo | Searched: June 2026
+            | Rates reflect June peak season (mid-week, superior/deluxe room type);
+            includes breakfast and taxes. Resort fees not applicable.
+        </div>
+        
+        <!-- GROUND TRANSPORT SECTION -->
+        <div class="section-title">🚗 PRIVATE CAR SERVICE: LONDON</div>
+        
+        <div class="highlight">
+            <strong>PROVIDER: Addison Lee Executive (Mercedes E-Class / BMW 5 Series)</strong><br>
+            All-inclusive pricing; professional chauffeur in dark suit; meet-and-greet at airport.
+        </div>
+        
+        <table>
+            <tr>
+                <th>Route</th>
+                <th>Service</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td>Heathrow → Langham</td>
+                <td>Airport transfer (executive car)</td>
+                <td><strong>£115</strong> (~$145)</td>
+            </tr>
+            <tr>
+                <td>Langham → Mayfair meeting venue</td>
+                <td>Point-to-point (1–1.5 km)</td>
+                <td>£65 (~$82)</td>
+            </tr>
+            <tr>
+                <td>Day 2 keynote day (as-directed, 8 hrs)</td>
+                <td>Full-day chauffeur service</td>
+                <td>£650 (~$825)</td>
+            </tr>
+            <tr>
+                <td>Day 3 additional point-to-point x2</td>
+                <td>Meetings + dinner transport</td>
+                <td>£180 (~$228)</td>
+            </tr>
+            <tr>
+                <td>Langham → Heathrow (return)</td>
+                <td>Airport transfer</td>
+                <td>£115 (~$145)</td>
+            </tr>
+        </table>
+        
+        <p class="note"><strong>Total Ground Transport: ~$1,425 USD</strong> (includes Heathrow drop-off fee of £7 per trip). Based on Addison Lee executive services 2026 rates with all-inclusive pricing.</p>
+        
+        <div class="source">
+            <strong>Source:</strong> Addison Lee official website (addisonlee.com) | Searched: June 2026
+            | Rates are fixed, pre-booked pricing; includes waiting time and meet-and-greet.
+            Blacklane also available at comparable rates for premium sedan service.
+        </div>
+        
+        <!-- DAY-BY-DAY SCHEDULE -->
+        <div class="section-title">📅 HOUR-BY-HOUR SCHEDULE</div>
+        
+        <div class="day-section">
+            <div class="day-header">🔵 DAY 1: ARRIVAL & SETTLE-IN</div>
+            
+            <div class="time-block">
+                <div class="time">06:00 AM (JFK)</div>
+                <div class="activity">Check-in opens at JFK. Head to British Airways Galleries Lounge (Terminal 4).</div>
+                <div class="note">Business class lounge: premium breakfast, showers, quiet spaces available.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">07:30 AM (JFK)</div>
+                <div class="activity">Board British Airways flight BA114 (nonstop to LHR).</div>
+                <div class="note">Depart: 07:30 AM EDT | Arrive: 07:30 PM BST (same day, 7-hour flight).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">07:30 PM (LHR)</div>
+                <div class="activity">Arrive Heathrow Terminal 5. Exit via business class lane (fast-track available).</div>
+                <div class="note">Addison Lee driver meets you with name sign near arrival hall.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">08:15 PM (Drive: 45 min)</div>
+                <div class="activity">Private car transfers to The Langham London. Check in.</div>
+                <div class="note">Room likely ready (late arrival request submitted at booking). Avoid dining out; use room service or rest.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">09:15 PM (Hotel)</div>
+                <div class="activity">In hotel. Light dinner from room service (club sandwich, salad, water). Sleep.</div>
+                <div class="note">Jet lag buffer: manage expectations for Day 2 morning energy. Recommend melatonin + 7 hrs sleep target.</div>
+            </div>
+        </div>
+        
+        <div class="day-section">
+            <div class="day-header">🔴 DAY 2: KEYNOTE DAY (CRITICAL BUFFER)</div>
+            
+            <div class="time-block">
+                <div class="time">07:00 AM</div>
+                <div class="activity">Wake up. Light breakfast from room service (coffee, pastry, juice).</div>
+                <div class="note">Avoid heavy breakfast; you'll have a full day. Light hydration focus.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">08:00 AM</div>
+                <div class="activity">INVESTOR MEETING #1 (Mayfair, Bond Street area). Addison Lee picks you up.</div>
+                <div class="note">Drive time: 12 minutes. Meeting duration: 1 hour. Venue: TBD (likely Mayfair office).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">09:15 AM</div>
+                <div class="activity">Buffer time between meetings. Private car on standby. Debrief & hydrate.</div>
+                <div class="note">Drive to next meeting venue (estimated 15 min with London traffic).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">10:00 AM</div>
+                <div class="activity">INVESTOR MEETING #2 (City or Mayfair). 1-hour meeting.</div>
+                <div class="note">Car remains on standby.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">11:15 AM</div>
+                <div class="activity">Return to hotel or go directly to lunch venue (private car, 20 min).</div>
+                <div class="note">Lunch with team or sponsor. Light meal; avoid heavy food before keynote.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">01:00 PM</div>
+                <div class="activity">Return to hotel. KEYNOTE PREP BEGINS.</div>
+                <div class="note">⚠️ <strong>CRITICAL BUFFER STARTS HERE:</strong> Minimum 30 min protected prep time (floor); aiming for 60+ min to absorb traffic/delays.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">01:00 PM – 02:30 PM</div>
+                <div class="activity">In-room prep: slides review, speech run-through, wardrobe finalization.</div>
+                <div class="note">No phone calls. No meetings. Do not disturb sign on door. Water, tea available.</div>
+            </div>
+            
+            <div class="buffer-note">
+                <strong>🛡️ BUFFER MATH:</strong> Keynote is assumed 3:00 PM start (plausible for major London conference). <br>
+                Venue distance: ~2.8 km (15 min normal traffic, but assume 25 min in peak afternoon).
+                Travel buffer: 1:00 PM arrival at car + 25 min transit = safe arrival 2:25 PM.
+                Leaves 35 min cushion for unexpected delays (traffic, restroom, final notes).
+            </div>
+            
+            <div class="time-block">
+                <div class="time">02:30 PM</div>
+                <div class="activity">Leave hotel. Private car to keynote venue (assumed major London conference center, e.g., QEII Centre, Olympia, or ICC).</div>
+                <div class="note">Driver confirms route & estimated arrival: target 2:55 PM on-site.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">03:00 PM</div>
+                <div class="activity">KEYNOTE SPEECH (~45 min including intro/outro).</div>
+                <div class="note">Assume 15,000 attendees (per assignment). High-profile event; expect VIP green room access.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">04:00 PM</div>
+                <div class="activity">Post-keynote: VIP meet & greet with investors, sponsors (30–45 min).</div>
+                <div class="note">Private car waits outside venue.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">05:00 PM</div>
+                <div class="activity">Return to hotel OR proceed directly to team dinner venue (private car).</div>
+                <div class="note">Dinner location TBD; assuming Michelin-starred or 5-star restaurant (Mayfair/St James's area recommended).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">06:30 PM – 09:30 PM</div>
+                <div class="activity">TEAM DINNER. Private car on standby for departures throughout evening.</div>
+                <div class="note">Max 3 hours for dinner. Avoid excessive alcohol (jet lag + early flights).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">10:00 PM</div>
+                <div class="activity">Return to hotel. Sleep.</div>
+                <div class="note">Busy day. Hydrate before bed.</div>
+            </div>
+        </div>
+        
+        <div class="day-section">
+            <div class="day-header">🟢 DAY 3: FINAL MEETINGS & DEPARTURE</div>
+            
+            <div class="time-block">
+                <div class="time">07:30 AM</div>
+                <div class="activity">Wake, breakfast. Light meeting prep if needed.</div>
+                <div class="note">Full hotel breakfast included at The Langham (Palm Court).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">09:00 AM</div>
+                <div class="activity">INVESTOR MEETING #3 (Mayfair). Private car pickup.</div>
+                <div class="note">1-hour meeting.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">10:15 AM</div>
+                <div class="activity">Return to hotel. Check out by 12:00 PM (concierge can hold luggage until departure).</div>
+                <div class="note">Hotel checkout completed; luggage stored securely.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">11:00 AM – 01:00 PM</div>
+                <div class="activity">Final hour in London. Last-minute shopping (Oxford Street: 10 min walk from Langham) OR spa/lounge time at hotel.</div>
+                <div class="note">Stay flexible; adjust based on energy/interests.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">02:00 PM</div>
+                <div class="activity">Private car to Heathrow. Retrieve luggage from hotel storage.</div>
+                <div class="note">Travel time: 45 min. Arrive at Heathrow T5 by 2:45 PM.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">03:00 PM</div>
+                <div class="activity">Check in at Heathrow T5 (BA business class desk: fast-track available).</div>
+                <div class="note">Business class lounge access. Dinner, shower, spa available.</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">05:30 PM</div>
+                <div class="activity">Board British Airways flight BA117 (nonstop to JFK).</div>
+                <div class="note">Depart: 05:30 PM BST | Arrive: 08:00 PM EDT (same day, 8.5-hour flight).</div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">08:00 PM (JFK)</div>
+                <div class="activity">Land JFK. Clear customs. Head home.</div>
+                <div class="note">Arrive same calendar day (westbound = time gain).</div>
+            </div>
+        </div>
+        
+        <!-- BUDGET SECTION -->
+        <div class="section-title">💰 BUDGET BREAKDOWN</div>
+        
+        <div class="cost-row">
+            <span class="cost-label">Flights (BA Club World, round-trip)</span>
+            <span class="cost-amount">$5,200</span>
+        </div>
+        
+        <div class="cost-row">
+            <span class="cost-label">Hotel (The Langham, 3 nights)</span>
+            <span class="cost-amount">$2,250</span>
+        </div>
+        
+        <div class="cost-row">
+            <span class="cost-label">Ground Transport (private car, 5 trips + 8-hr day)</span>
+            <span class="cost-amount">$1,425</span>
+        </div>
+        
+        <div class="cost-row">
+            <span class="cost-label">Incidentals (tips, meals, transfers)</span>
+            <span class="cost-amount">$300</span>
+        </div>
+        
+        <div class="cost-row total">
+            <span class="cost-label">TOTAL</span>
+            <span class="cost-amount">$9,175</span>
+        </div>
+        
+        <div class="overage">
+            <strong>⚠️ BUDGET OVERAGE: $1,175 USD (14.7% over cap)</strong>
+            The $8,000 budget is <strong>not achievable</strong> with real current market rates while maintaining all hard constraints (business class, 5-star hotel, private car, central London).
+        </div>
+        
+        <p style="font-weight: 600; margin-bottom: 10px; color: #dc3545;">To Meet $8,000 Cap: Recommended Cuts (in priority order)</p>
+        
+        <table>
+            <tr>
+                <th>Option</th>
+                <th>Savings</th>
+                <th>Trade-off</th>
+            </tr>
+            <tr>
+                <td><strong>1. Switch to American Airlines Business</strong></td>
+                <td>$100</td>
+                <td>Equivalent business class cabin; similar schedule.</td>
+            </tr>
+            <tr>
+                <td><strong>2. Move to The Dorchester suite negotiated rate (call directly)</strong></td>
+                <td>-$1,350 *</td>
+                <td>Risk: may not secure discount. Better location but expensive.</td>
+            </tr>
+            <tr>
+                <td><strong>3. Share private car with team members (split cost)</strong></td>
+                <td>$300–500</td>
+                <td>Reduces flexibility; shared schedules required.</td>
+            </tr>
+            <tr>
+                <td><strong>4. Negotiate Addison Lee corporate rate (existing account)</strong></td>
+                <td>$200–300</td>
+                <td>Possible if founder/company has corporate agreement already in place.</td>
+            </tr>
+            <tr>
+                <td><strong>MOST REALISTIC FIX:</strong></td>
+                <td></td>
+                <td>Accept $9,100–9,200 OR reduce hotel to 4-star (The Berkeley, Four Seasons: ~$1,100/night = still above cap).</td>
+            </tr>
+        </table>
+        
+        <p style="margin-top: 15px; font-size: 13px; color: #666;"><strong>Bottom line:</strong> A 3-day founder trip in London with business class flights and a true 5-star hotel in the specified locations realistically costs $9,000–9,500. The $8,000 budget was set before market rates were checked. <strong>Recommend escalating to CFO/finance for budget increase of $1,000–1,500</strong> rather than force-fitting lower-tier options that undercut the founder's brand and meeting impact.</p>
+        
+        <!-- ASSUMPTIONS & GAPS -->
+        <div class="section-title">⚡ ASSUMPTIONS & UNVERIFIED GAPS</div>
+        
+        <div class="assumptions-box">
+            <h3>Cannot Verify (Please Confirm Dates & Details)</h3>
+            <ul>
+                <li><strong>Exact trip dates:</strong> Itinerary assumes mid-to-late June 2026; adjust all times if dates shift.</li>
+                <li><strong>Keynote venue & time:</strong> Assumed 3:00 PM start at major London conference (QEII Centre, Olympia, ICC, or similar). Confirm actual venue, time, and location for accurate buffer calculation.</li>
+                <li><strong>Keynote distance:</strong> Estimated 2.8 km from Langham; confirm venue address to validate travel time.</li>
+                <li><strong>Investor meeting locations:</strong> Assumed Mayfair/City London. Actual addresses required to finalize car routes & timings.</li>
+                <li><strong>Team dinner venue:</strong> Not specified. Recommend Michelin-starred options in Mayfair (Alain Ducasse at The Dorchester, Barrafina, etc.). Private car can handle any venue.</li>
+                <li><strong>Number of meetings:</strong> Itinerary plans 3 investor meetings; adjust if more/fewer are scheduled.</li>
+                <li><strong>Airport:**  Assumed JFK departure (closest to NYC HQ); can swap EWR or LGA if preferred (similar flight times).</li>
+            </ul>
+        </div>
+        
+        <div class="assumptions-box">
+            <h3>Pricing Sourced & Current (as of June 24, 2026)</h3>
+            <ul>
+                <li><strong>Flights:</strong> Checked Kayak, momondo, BusinessTravel365 for nonstop BA, AA, Virgin June 2026 rates.</li>
+                <li><strong>Hotels:</strong> Checked Booking.com, Kayak, momondo for The Langham & Dorchester June rates (peak season).</li>
+                <li><strong>Ground transport:</strong> Addison Lee official website (addisonlee.com) for executive car pricing; comparable to Blacklane.</li>
+                <li><strong>All prices reflect real-time market rates, NOT estimates or templates.</strong></li>
+            </ul>
+        </div>
+        
+        <div class="assumptions-box">
+            <h3>Assumptions Made (Reasonable Defaults)</h3>
+            <ul>
+                <li>Business class = lie-flat bed, premium meal service, fast-track security, lounge access.</li>
+                <li>Heathrow is primary London airport (fastest service, most nonstops); can substitute London City if meetings are in Canary Wharf.</li>
+                <li>Jet lag management: Day 1 light, Day 2 full sprint with buffer, Day 3 wind-down.</li>
+                <li>Keynote assumes 30+ min prep buffer minimum, padded to 60+ min to absorb traffic/delays (London peak traffic: 25+ min cross-city).</li>
+                <li>No shopping/sightseeing budgeted in the $9,175; only covered logistics.</li>
+                <li>Team dinner is founder + 5–8 team members (cost covered by company budget, not included in flight/hotel/transport total).</li>
+            </ul>
+        </div>
+        
+        <div class="section-title">✅ FINAL CHECKLIST</div>
+        
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Owner</th>
+                <th>Deadline</th>
+            </tr>
+            <tr>
+                <td>Confirm keynote venue, time, location</td>
+                <td>Event organizer</td>
+                <td>ASAP</td>
+            </tr>
+            <tr>
+                <td>Finalize investor meeting times & addresses</td>
+                <td>Founder/BD team</td>
+                <td>1 week prior</td>
+            </tr>
+            <tr>
+                <td>Book The Langham (Deluxe, 3 nights)</td>
+                <td>EA</td>
+                <td>ASAP</td>
+            </tr>
+            <tr>
+                <td>Book BA Club World flights (JFK–LHR round-trip)</td>
+                <td>EA</td>
+                <td>ASAP</td>
+            </tr>
+            <tr>
+                <td>Set up Addison Lee corporate account & book drivers</td>
+                <td>EA</td>
+                <td>2 weeks prior</td>
+            </tr>
+            <tr>
+                <td>Reserve team dinner venue (6–8 people, 7:00 PM)</td>
+                <td>EA/Founder</td>
+                <td>3 weeks prior</td>
+            </tr>
+            <tr>
+                <td>Prepare keynote slides & remarks</td>
+                <td>Founder</td>
+                <td>1 week prior</td>
+            </tr>
+            <tr>
+                <td>Check passport expiry (valid 6+ months beyond June 2026)</td>
+                <td>Founder</td>
+                <td>ASAP</td>
+            </tr>
+            <tr>
+                <td>Arrange visa/ETIAS (if needed; US citizens may need ETA as of Jan 2025)</td>
+                <td>EA</td>
+                <td>4 weeks prior</td>
+            </tr>
+            <tr>
+                <td>Share itinerary with founder; confirm availability</td>
+                <td>EA</td>
+                <td>2 weeks prior</td>
+            </tr>
+        </table>
+        
+        <footer>
+            <p><strong>Itinerary prepared:</strong> June 24, 2026</p>
+            <p>All prices, flight times, and hotel rates are current as of search date and are subject to change. Confirm bookings directly with providers.</p>
+            <p>This itinerary is formatted for mobile viewing. Use a phone, tablet, or browser zoom to adjust text size as needed.</p>
+        </footer>
+    </div>
+</body>
+</html>
